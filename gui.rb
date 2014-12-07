@@ -46,7 +46,7 @@ Shoes.app width: 480, height: 320, scroll: false, resize: false, fullscreen: tru
   flow do
     stack width: "70%", margin: 10 do
       @radios.each do |name, stream|
-        temp = button name.to_s, margin: 2 do
+        temp = button name.to_s, margin_bottom: 10 do
           @stream.text = name.to_s
           @player.play stream.to_s
           @last = stream.to_s
@@ -55,13 +55,13 @@ Shoes.app width: 480, height: 320, scroll: false, resize: false, fullscreen: tru
     end
     
     stack width: "30%", margin: 10 do
-      button "Stop", margin: 2 do
+      button "Stop", margin_bottom: 10 do
         @player.stop
         @last = ""
         @stream.text = " "
       end
       
-      button "Quit", margin: 2 do
+      button "Quit", margin_bottom: 10 do
         self.quit
       end
     end

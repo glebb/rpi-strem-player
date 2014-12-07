@@ -45,7 +45,8 @@ class Player
       @apple_tv.pause
     end
     unless @rpi.nil? then
-      @rpi.pause
+      @rpi.quit
+      @rpi = nil
     end
   end      
 end
