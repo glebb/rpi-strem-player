@@ -33,7 +33,8 @@ class Player
     unless stream.empty?
       if @mode == "RPI" then
         mplayer stream
-      else 
+      else
+        stop 
         airplay stream
       end
     end
