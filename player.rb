@@ -4,10 +4,9 @@ require "mplayer-ruby"
 class Player
   def initialize(mode)  
     @mode = mode
-    @apple_tv = nil
     @apple_airplay = Airplay["Apple TV"]
+    @apple_tv = nil
     @rpi = nil
-    @apple_paused = true
   end
   
   def switch(mode)
@@ -16,20 +15,24 @@ class Player
   
   def mplayer(stream)
     if @rpi.nil? then
-      @rpi = MPlayer::Slave.new stream, :path => '/usr/local/bin/mplayer'
+      @rpi = MPlayer::Slave.new stream, :path => '/usr/bin/mplayer'
     else
        @rpi.load_file stream, :no_append
     end
   end
 
   def airplay(stream)
-    @apple_tv = @apple_airplay.play stream
+    if @apple_tv.nil? then
+      @apple_tv = @apple_airplay.play stream
+    else
+      @apple_tv.playlist << stream
+      @apple_tv.next
+    end
   end
   
   def play(stream)
     unless stream.empty?
       if @mode == "RPI" then
-        stop
         mplayer stream
       else 
         airplay stream
@@ -41,10 +44,8 @@ class Player
     unless @apple_tv.nil? then
       @apple_tv.pause
     end
-    if @rpi != nil then
-      @rpi.quit
-      @rpi = nil
+    unless @rpi.nil? then
+      @rpi.pause
     end
-  end    
-  
+  end      
 end

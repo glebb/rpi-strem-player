@@ -5,7 +5,7 @@ end
 
 require_relative 'player'
 
-Shoes.app width: 480, height: 320, scroll: false, resize: false do #, fullscreen: true 
+Shoes.app width: 480, height: 320, scroll: false, resize: false, fullscreen: true do
   @radios = {:'Radio Rock' => 'http://83.102.39.40/Radiorock.mp3',
             :'Radio Suomipop' => 'http://rstream2.nelonenmedia.fi/RadioSuomiPop.mp3',
             :'Radio City' => 'http://icelive0.43660-icelive0.cdn.qbrick.com/4916/43660_radio_city.mp3',
@@ -44,9 +44,9 @@ Shoes.app width: 480, height: 320, scroll: false, resize: false do #, fullscreen
   end
   
   flow do
-    stack width: "70%", margin: 10, margin_top: 0 do
+    stack width: "70%", margin: 10 do
       @radios.each do |name, stream|
-        temp = button name.to_s do
+        temp = button name.to_s, margin: 2 do
           @stream.text = name.to_s
           @player.play stream.to_s
           @last = stream.to_s
@@ -54,14 +54,14 @@ Shoes.app width: 480, height: 320, scroll: false, resize: false do #, fullscreen
       end
     end
     
-    stack width: "30%", margin: 10, margin_top: 0 do
-      button "Stop" do
+    stack width: "30%", margin: 10 do
+      button "Stop", margin: 2 do
         @player.stop
         @last = ""
         @stream.text = " "
       end
       
-      button "Quit" do
+      button "Quit", margin: 2 do
         self.quit
       end
     end
