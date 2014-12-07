@@ -13,7 +13,7 @@ class Player
   
   def mplayer(stream)
     if @rpi.nil? then
-      @rpi = MPlayer::Slave.new stream, :path => '/usr/local/bin/mplayer'
+      @rpi = MPlayer::Slave.new stream, :path => '/usr/bin/mplayer'
     else
        @rpi.load_file stream, :no_append
     end
