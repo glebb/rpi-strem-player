@@ -13,7 +13,7 @@ class Player
   
   def mplayer(stream)
     if @rpi.nil? then
-      @rpi = MPlayer::Slave.new stream, :path => '/usr/bin/mplayer'
+      @rpi = MPlayer::Slave.new stream, :path => '/usr/local/bin/mplayer'
     else
        @rpi.load_file stream, :no_append
     end
@@ -23,6 +23,12 @@ class Player
     @apple_tv = Process.fork do
       exec "/usr/local/bin/airplayer " + stream #/Library/Ruby/Gems/2.0.0/gems/airplay-1.0.3/bin/air
     end      
+  end
+  
+  def volume(kw)
+    unless @rpi.nil? then
+      @rpi.volume kw
+    end
   end
   
   def play(stream)
