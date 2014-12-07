@@ -25,8 +25,7 @@ class Player
     if @apple_tv.nil? then
       @apple_tv = @apple_airplay.play stream
     else
-      @apple_tv.playlist << stream
-      @apple_tv.next
+      @apple_tv.play stream
     end
   end
   
@@ -43,6 +42,10 @@ class Player
   def stop()
     unless @apple_tv.nil? then
       @apple_tv.pause
+      @apple_tv.stop
+      @apple_tv.cleanup
+      @apple_tv = nil
+      
     end
     unless @rpi.nil? then
       @rpi.quit
