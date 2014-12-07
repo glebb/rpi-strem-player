@@ -13,7 +13,8 @@ Shoes.app width: 480, height: 320, scroll: false, resize: false do #, fullscreen
             :'Radio Aalto' => 'http://rstream2.nelonenmedia.fi/RadioAalto.mp3',
             :'Radio Nostalgia' => 'http://adwzg4.tdf-cdn.com/9201/nrj_113217.mp3',
             :'Radio NRJ' => 'http://adwzg4.tdf-cdn.com/8945/nrj_179479.mp3',
-            :'Loop' => 'http://rstream2.nelonenmedia.fi/Loop.mp3'}
+            :'Loop' => 'http://rstream2.nelonenmedia.fi/Loop.mp3',
+            :'Yle Puhe' => 'http://195.248.86.134/liveradiopuhe?.wma'}  
   
   @player = Player.new "RPI"
   background "#DFA"
