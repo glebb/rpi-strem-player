@@ -1,5 +1,4 @@
 Shoes.setup do
-  gem 'airplay'
   gem 'mplayer-ruby'
 end
 

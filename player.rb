@@ -1,4 +1,3 @@
-require "airplay"
 require "mplayer-ruby"
 
 class Player
@@ -14,7 +13,7 @@ class Player
   
   def mplayer(stream)
     if @rpi.nil? then
-      @rpi = MPlayer::Slave.new stream, :path => '/usr/local/bin/mplayer'
+      @rpi = MPlayer::Slave.new stream, :path => '/usr/bin/mplayer'
     else
        @rpi.load_file stream, :no_append
     end
@@ -22,7 +21,7 @@ class Player
 
   def airplay(stream)
     @apple_tv = Process.fork do
-      exec "air play " + stream #/Library/Ruby/Gems/2.0.0/gems/airplay-1.0.3/bin/air
+      exec "/usr/local/bin/airplayer " + stream #/Library/Ruby/Gems/2.0.0/gems/airplay-1.0.3/bin/air
     end      
   end
   
